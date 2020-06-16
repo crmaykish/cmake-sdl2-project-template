@@ -170,7 +170,7 @@ find_path(SDL2_INCLUDE_DIR SDL.h
   PATH_SUFFIXES SDL2
                 # path suffixes to search inside ENV{SDL2DIR}
                 include/SDL2 include
-                /tmp/sdl2-win64
+                /usr/x86_64-w64-mingw32/include
   PATHS ${SDL2_PATH}
   DOC "Where the SDL2 headers can be found"
 )
@@ -224,6 +224,7 @@ if(NOT SDL2_BUILDING_LIBRARY)
         ENV SDL2DIR
         ${SDL2_NO_DEFAULT_PATH_CMD}
       PATH_SUFFIXES lib ${VC_LIB_PATH_SUFFIX}
+      /usr/x86_64-w64-mingw32/lib
       PATHS ${SDL2MAIN_LIBRARY_PATHS}
       DOC "Where the SDL2main library can be found"
     )
