@@ -7,7 +7,8 @@ This is a project template for C/C++ with SDL2, SDL2_image, SDL2_ttf, and SDL2_m
 ### Linux
 
 1. `apt-get install cmake libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev`
-2. `cd lib && ./clone_libs.sh`
+2. `mkdir -p config && mkdir -p assets`
+3. `cd lib && ./clone_libs.sh`
 
 ### Windows
 
