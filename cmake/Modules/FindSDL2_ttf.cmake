@@ -66,10 +66,18 @@
 #  License text for the above reference.)
 
 SET(SDL2TTF_SEARCH_PATHS
+	HINTS
+	${SDL2}
+	$ENV{SDL2}
+	$ENV{SDL2_IMAGE}
+	PATH_SUFFIXES include/SDL2 include SDL2
+	i686-w64-mingw32/include/SDL2
+	x86_64-w64-mingw32/include/SDL2
+	PATHS
 	~/Library/Frameworks
 	/Library/Frameworks
-	/usr/local
-	/usr
+	/usr/local/include/SDL2
+	/usr/include/SDL2
 	/sw # Fink
 	/opt/local # DarwinPorts
 	/opt/csw # Blastwave
@@ -88,6 +96,8 @@ FIND_LIBRARY(SDL2TTF_LIBRARY_TEMP
 	HINTS
 	$ENV{SDL2TTFDIR}
 	PATH_SUFFIXES lib64 lib
+	lib/x64
+	x86_64-w64-mingw32/lib
 	PATHS ${SDL2TTF_SEARCH_PATHS}
 )
 
