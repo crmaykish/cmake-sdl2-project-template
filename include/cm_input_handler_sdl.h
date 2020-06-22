@@ -8,7 +8,7 @@ namespace cm
     class SDLInputHandler : public InputHandler
     {
     public:
-        void PollForInput(UserInput &userinput);
+        void PollForInput(UserInput &userinput) override;
     };
 
 } // namespace cm

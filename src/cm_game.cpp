@@ -1,9 +1,6 @@
 #include "cm_game.h"
 #include "cm_logger.h"
 
-// REMOVE THIS
-#include <SDL_gpu.h>
-
 namespace cm
 {
     Game::Game()
@@ -18,11 +15,7 @@ namespace cm
     {
         Log("Initializing game...", LOG_INFO);
 
-        // REMOVE THIS
-
-        GPU_Target *t = GPU_Init(800, 600, GPU_DEFAULT_INIT_FLAGS);
-
-        // REMOVE
+        MainRenderer->Init();
 
         Running = true;
     }
@@ -54,8 +47,7 @@ namespace cm
                     Running = false;
                 }
 
-                
-                // TODO: update game state
+                Update();
 
                 // Input has been handled
                 Input.Reset();
@@ -63,18 +55,42 @@ namespace cm
                 lag -= TIME_PER_TICK;
             }
 
-            // TODO: render
+            Render();
         }
     }
 
     void Game::Close()
     {
         Log("Closing game...", LOG_INFO);
+
+        MainRenderer->Close();
     }
 
     void Game::SetMainInputHandler(std::shared_ptr<InputHandler> mainInputHandler)
     {
         MainInputHandler = mainInputHandler;
+    }
+
+    void Game::SetMainRenderer(std::shared_ptr<Renderer> mainRenderer)
+    {
+        MainRenderer = mainRenderer;
+    }
+
+    void Game::Update()
+    {
+        // TODO: update game objects
+    }
+
+    void Game::Render()
+    {
+        // TODO: render game objects
+
+        MainRenderer->DrawRectangle(100, 100, 200, 100);
+
+        if (MainRenderer != nullptr)
+        {
+            MainRenderer->Render();
+        }
     }
 
 } // namespace cm
