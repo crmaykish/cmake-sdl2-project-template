@@ -16,6 +16,7 @@ namespace cm
     public:
         void Init() override;
         void Close() override;
+        void Prepare() override;
         void Render() override;
 
         void DrawRectangle(float x, float y, float w, float h) override;

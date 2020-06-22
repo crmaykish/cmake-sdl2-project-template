@@ -8,6 +8,7 @@ namespace cm
     public:
         virtual void Init() = 0;
         virtual void Close() = 0;
+        virtual void Prepare() = 0;
         virtual void Render() = 0;
 
         virtual void DrawRectangle(float x, float y, float w, float h) = 0;

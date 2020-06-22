@@ -15,9 +15,13 @@ namespace cm
         Log("Closing SDL GPU renderer...", LOG_INFO);
     }
 
-    void SDLGPURenderer::Render()
+    void SDLGPURenderer::Prepare()
     {
         GPU_Clear(gpu);
+    }
+
+    void SDLGPURenderer::Render()
+    {
         GPU_Flip(gpu);
     }
 

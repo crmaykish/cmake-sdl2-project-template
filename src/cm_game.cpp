@@ -83,14 +83,18 @@ namespace cm
 
     void Game::Render()
     {
+        if (MainRenderer == nullptr)
+        {
+            return;
+        }
+
+        MainRenderer->Prepare();
+
         // TODO: render game objects
 
         MainRenderer->DrawRectangle(100, 100, 200, 100);
 
-        if (MainRenderer != nullptr)
-        {
-            MainRenderer->Render();
-        }
+        MainRenderer->Render();
     }
 
 } // namespace cm
