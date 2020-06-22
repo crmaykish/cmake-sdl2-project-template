@@ -54,12 +54,10 @@ namespace cm
                     Running = false;
                 }
 
-                if (Input.Left.On)
-                {
-                    Log("left: " + std::to_string(Input.Left.On), LOG_INFO);
-                }
                 
-                // Input has been handled, reset states so it is not used again
+                // TODO: update game state
+
+                // Input has been handled
                 Input.Reset();
 
                 lag -= TIME_PER_TICK;

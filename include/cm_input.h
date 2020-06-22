@@ -8,6 +8,7 @@ namespace cm
         bool On = false;
         bool OnLast = false;
 
+        bool Once();
         void Reset();
     };
 
@@ -15,9 +16,11 @@ namespace cm
     {
         int X = 0;
         int Y = 0;
-        bool Left = false;
-        bool Right = false;
-        bool Middle = false;
+        InputState Left;
+        InputState Right;
+        InputState Middle;
+
+        void Reset();
     };
 
     struct UserInput
