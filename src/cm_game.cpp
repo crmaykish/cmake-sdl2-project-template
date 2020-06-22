@@ -1,6 +1,9 @@
 #include "cm_game.h"
 #include "cm_logger.h"
 
+// REMOVE THIS
+#include <SDL_gpu.h>
+
 namespace cm
 {
     Game::Game()
@@ -14,13 +17,19 @@ namespace cm
     void Game::Init()
     {
         Log("Initializing game...", LOG_INFO);
+
+        // REMOVE THIS
+
+        GPU_Target *t = GPU_Init(800, 600, GPU_DEFAULT_INIT_FLAGS);
+
+        // REMOVE
+
+        Running = true;
     }
 
     void Game::Loop()
     {
         Log("Starting game loop", LOG_INFO);
-
-        Running = true;
 
         auto previousTime = std::chrono::steady_clock::now();
         std::chrono::duration<double> lag;
@@ -32,11 +41,26 @@ namespace cm
             previousTime = currentTime;
             lag += elapsedTime;
 
-            // TODO: handle user input
+            // Check for user input
+            if (MainInputHandler != nullptr)
+            {
+                MainInputHandler->PollForInput(Input);
+            }
 
             while (lag >= TIME_PER_TICK)
             {
-                // TODO: update game state
+                if (Input.Quit.On)
+                {
+                    Running = false;
+                }
+
+                if (Input.Left.On)
+                {
+                    Log("left: " + std::to_string(Input.Left.On), LOG_INFO);
+                }
+                
+                // Input has been handled, reset states so it is not used again
+                Input.Reset();
 
                 lag -= TIME_PER_TICK;
             }
@@ -48,6 +72,11 @@ namespace cm
     void Game::Close()
     {
         Log("Closing game...", LOG_INFO);
+    }
+
+    void Game::SetMainInputHandler(std::shared_ptr<InputHandler> mainInputHandler)
+    {
+        MainInputHandler = mainInputHandler;
     }
 
 } // namespace cm

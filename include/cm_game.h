@@ -1,7 +1,10 @@
 #ifndef CM_GAME_H
 #define CM_GAME_H
 
+#include <memory>
 #include <chrono>
+#include "cm_input.h"
+#include "cm_input_handler.h"
 
 namespace cm
 {
@@ -13,6 +16,8 @@ namespace cm
     {
     private:
         bool Running = false;
+        UserInput Input;
+        std::shared_ptr<InputHandler> MainInputHandler = nullptr;
 
     public:
         Game();
@@ -21,6 +26,8 @@ namespace cm
         void Init();
         void Loop();
         void Close();
+
+        void SetMainInputHandler(std::shared_ptr<InputHandler> mainInputHandler);
     };
 
 } // namespace cm
